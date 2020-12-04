@@ -5,6 +5,7 @@ from color_layer import Layer
 from functions import *
 
 
+
 FRAME_INDEX = "frame_selection_range"
 KEYS_AMOUNT = 61
 
@@ -14,7 +15,7 @@ with open("test_color.Advanced", "r") as f:
 
 print(ALL_JSON["pagedata"]["matrix_ColorMode"][0])
 
-colors = KeyboardImage("minecraft.jpg").pack()
+colors = KeyboardImage("gradient.jpg").pack()
 
 ALL_JSON["pagedata"]["matrix_ColorMode"] = colors
 

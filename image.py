@@ -1,15 +1,19 @@
-from PIL import Image, ImageDraw, ImagePalette
+from PIL import Image, ImageDraw, ImagePalette, ImageEnhance
+
 from color_layer import Layer
 from map import Map
 from CONSTANTS import *
+import colorsys
 
 
 class KeyboardImage:
+    contrast = 1
+
     def __init__(self, path):
         self.image = Image.open(path)
         self.image = self.image.convert("RGB")
         self.w, self.h = self.image.size
-        self.map = Map("map61key.json", (self.w, self.h))
+        self.map = Map(KEY_MAP, (self.w, self.h))
 
         self.colors = Image.new(mode="RGB", size=(len(self.map), 1))
         self.pairs = []
@@ -17,10 +21,11 @@ class KeyboardImage:
         self.reduced_map = []
         self.get_keys()
         self.colors = self.colors
-        red = self.colors.convert('P', palette=Image.ADAPTIVE, colors=MAX_COLORS)
-        red = red.convert("RGB")
-        self.reduced_colors = red
-        self.get_out_map()
+        self.reduce_colors(self.colors)
+        #self.get_out_map()
+
+        self.enhancer = ImageEnhance.Contrast(self.colors)
+        self.last_hue = 0
 
     def get_from_map(self, index):
         new_im = self.image.crop(self.map[index])
@@ -60,11 +65,43 @@ class KeyboardImage:
         self.reduced_map = layers
 
     def pack(self):
+        self.get_out_map()
         ret = []
         for l in self.reduced_map:
             ret.append(l.pack())
         return ret
 
+    def reduce_colors(self, colors):
+        red = colors.convert('P', palette=Image.ADAPTIVE, colors=MAX_COLORS)
+        red = red.convert("RGB")
+        self.reduced_colors = red
+        self.reduced_colors_original = red.copy()
+
+    def set_contrast(self, number):
+        if self.contrast != number:
+            out = self.enhancer.enhance(number)
+            self.reduce_colors(out)
+
+    def set_hue(self, hue=0, sat=0, vib=0):
+        d = (float(hue) - self.last_hue) / 360
+        for i in range(self.reduced_colors.size[0]):
+            c = self.reduced_colors_original.getpixel((i, 0))
+            h, s, v = colorsys.rgb_to_hsv(*c)
+            print(d, h)
+            r, g, b = colorsys.hsv_to_rgb((d + h) % 1, s, v + vib)
+            c = int(r), int(g), int(b)
+            self.reduced_colors.putpixel((i, 0), c)
+        print(self.reduced_colors.getpixel((i, 0)))
+
+
+    def __getitem__(self, key):
+        return self.reduced_colors.getpixel((key, 0))
+
+    def __setitem__(self, key, value):
+        self.reduced_colors.putpixel((key, 0), value)
+
+    def __len__(self):
+        return self.reduced_colors.size[0]
 
 
 

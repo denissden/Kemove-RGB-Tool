@@ -2,7 +2,7 @@ from image import KeyboardImage
 from PIL import Image, ImageDraw, ImagePalette
 
 
-# image = KeyboardImage("monitor2.png").colors
+image = KeyboardImage("monitor2.png").colors
 
 image = Image.open("color.png")
 out = image.convert('P', palette=Image.ADAPTIVE, colors=12)

@@ -8,3 +8,4 @@ ADJUSTABLES = [
     [0, False, True, True]
 ]
 MAX_COLORS = 21
+KEY_MAP = "map61key.json"

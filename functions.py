@@ -1,5 +1,5 @@
 def rgb_to_hex(rgb):
-    s = '%02x%02x%02x' % rgb
+    s = '#%02x%02x%02x' % rgb
     return s.upper()
 
 
