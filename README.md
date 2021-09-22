@@ -19,6 +19,6 @@ The keyboard supports only 21 colors per project. To display the image on 61 key
 
 Keys are numbered in rows from left to right. 
 
-(insert image here)
+![Layout](/images/enumerate.png)
 
 The key map is stored in [map61key.json](/map61key.json) and can be generated using [generate_map61key.py](/generate_map61key.py)
