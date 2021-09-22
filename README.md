@@ -1,10 +1,14 @@
 # Display images on your keyboard
 This app helps you to convert images to Kemove files that are used for lighting up the keyboard
 
-(insert images here)
+##### App ui: 
+
+![App UI](/images/showcase_2.png)
+##### Result:
+![Result](/images/showcase_1.jpg)
 
 ### Usage
-* run [main.py](../master/main.py)
+* run [main.py](/main.py)
 * select your image
 * export Kemove project file
 * import project file in Kemove software 
@@ -17,4 +21,4 @@ Keys are numbered in rows from left to right.
 
 (insert image here)
 
-The key map is stored in [map61key.json](../master/map61key.json) and can be generated using [generate_map61key.py](../master/generate_map61key.py)
+The key map is stored in [map61key.json](/map61key.json) and can be generated using [generate_map61key.py](/generate_map61key.py)
