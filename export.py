@@ -1,11 +1,10 @@
 import json
 from frame import Frame
-from PRESETS import *
+from kemove_project_presets import *
 from random import randint
 
 
 def export_advanced(file, image):
-
     filename = file.split("/")[-1]
     file += ".Advanced"
 
@@ -22,9 +21,6 @@ def export_advanced(file, image):
     preset["pagedata"]["matrix_ColorMode"] = colors
     with open(file, "w+") as f:
         json.dump(preset, f)
-
-
-
 
 
 def parse_preset(preset, filename):

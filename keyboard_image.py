@@ -1,8 +1,8 @@
-from PIL import Image, ImageDraw, ImagePalette, ImageEnhance
+from PIL import Image, ImageDraw, ImageEnhance
 
-from color_layer import Layer
+from layer import Layer
 from map import Map
-from CONSTANTS import *
+from constants import *
 import colorsys
 
 
@@ -102,7 +102,6 @@ class KeyboardImage:
 
     def __len__(self):
         return self.reduced_colors.size[0]
-
 
 
 class KeyImage:

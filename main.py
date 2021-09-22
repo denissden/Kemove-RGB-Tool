@@ -1,14 +1,13 @@
 from tkinter import *
 from tkinter import Frame as TkFrame
 from tkinter import filedialog
-from image import KeyboardImage
+from keyboard_image import KeyboardImage
 from functions import *
-from CONSTANTS import  *
 from map import Map
 from export import *
 
 WIDTH, HEIGHT = 850, 400
-IMAGE = "gradient.jpg"
+IMAGE = "images/gradient.jpg"
 
 
 class MainWindow(TkFrame):
@@ -24,8 +23,6 @@ class MainWindow(TkFrame):
         self.canvas.pack()
 
         self.init_window()
-
-
 
     def init_window(self):
         self.master.title("Keyboard Lighting Tool")
@@ -61,7 +58,6 @@ class MainWindow(TkFrame):
         self.hue_slider.set(0)
         self.hue_slider.pack(side=LEFT)
 
-
     def init_menu(self):
         # MENU
         menu = Menu(self.master)
@@ -73,7 +69,6 @@ class MainWindow(TkFrame):
         file.add_command(label="Export", command=self.export_file)
         file.add_command(label="Exit", command=self.exit_program)
         menu.add_cascade(label="File", menu=file)
-
 
     def change_constrast(self, value):
         factor = self.constrast_slider.get()
@@ -113,21 +108,8 @@ class MainWindow(TkFrame):
         export_advanced(save_file, self.image)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-app = Tk()
-app.geometry(f"{WIDTH}x{HEIGHT}")
-
-window = MainWindow(app)
-
-app.mainloop()
+if __name__ == '__main__':
+    app = Tk()
+    app.geometry(f"{WIDTH}x{HEIGHT}")
+    window = MainWindow(app)
+    app.mainloop()

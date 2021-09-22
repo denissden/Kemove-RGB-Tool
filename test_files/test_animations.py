@@ -9,7 +9,7 @@ FRAME_INDEX = "frame_selection_range"
 KEYS_AMOUNT = 61
 
 
-with open("test_color.Advanced", "r") as f:
+with open("../kemove_files/test_color.Advanced", "r") as f:
     ALL_JSON = json.load(f)
 
 print(ALL_JSON["pagedata"]["matrix_ColorMode"][0])

@@ -1,4 +1,4 @@
-from CONSTANTS import *
+from constants import *
 
 
 class Frame:
